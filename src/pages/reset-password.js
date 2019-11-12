@@ -1,6 +1,9 @@
 import React from "react"
 import { TextField, Button, Card, Typography } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
+import * as api from "../api"
+import { FormattedMessage, useIntl } from "react-intl"
+
 const useStyles = makeStyles(theme => {
   return {
     card: {
@@ -14,32 +17,39 @@ const useStyles = makeStyles(theme => {
   }
 })
 
-const ForgotPassword = () => {
-  const onSubmit = e => {
+const ResetPassword = () => {
+  const onSubmit = async e => {
     e.preventDefault()
     const {
       email: { value: email }
     } = e.target.elements
-    console.log({ email })
+    await api.resetPassword(email)
   }
+
+  const { formatMessage } = useIntl()
   const classes = useStyles()
   return (
     <form onSubmit={onSubmit}>
       <Card className={classes.card}>
-        <Typography variant="h4">Forgot Password</Typography>
+        <Typography variant="h4">
+          <FormattedMessage id="resetPassword.title" />
+        </Typography>
         <TextField
+          inputProps={{
+            "aria-label": formatMessage({ id: "resetPassword.emailAriaLabel" })
+          }}
           required
           name="email"
           variant="outlined"
           color="primary"
-          label="Email"
+          label={<FormattedMessage id="resetPassword.email" />}
         />
         <Button type="submit" variant="contained" color="primary">
-          SUBMIT
+          <FormattedMessage id="common.submit" />
         </Button>
       </Card>
     </form>
   )
 }
 
-export default ForgotPassword
+export default ResetPassword

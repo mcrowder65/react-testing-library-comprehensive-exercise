@@ -4,7 +4,7 @@ import { ThemeProvider } from "@material-ui/core/styles"
 import { IntlProvider } from "react-intl"
 import theme from "./theme"
 import { BrowserRouter as Router, Route } from "react-router-dom"
-import ForgotPassword from "./pages/forgot-password"
+import ResetPassword from "./pages/reset-password"
 import translations from "./translations"
 const App = () => {
   const locale = "en"
@@ -15,8 +15,8 @@ const App = () => {
           <Route exact path="/">
             <Login />
           </Route>
-          <Route exact path="/forgot-password">
-            <ForgotPassword />
+          <Route exact path="/reset-password">
+            <ResetPassword />
           </Route>
         </Router>
       </ThemeProvider>
