@@ -27,7 +27,7 @@ it("renders", () => {
 })
 
 it("calls login with provided username and password when submitting", () => {
-  const { getByLabelText, getByRole } = render(
+  const { getByLabelText, getByText, debug } = render(
     <ThemeProvider theme={theme}>
       <IntlProvider messages={translations["en"]} locale="en">
         <Router>
@@ -45,8 +45,8 @@ it("calls login with provided username and password when submitting", () => {
   fireEvent.change(getByLabelText(translations.en["login.passwordAriaLabel"]), {
     target: { value: password }
   })
-
-  fireEvent.click(getByRole("button"))
+  debug()
+  fireEvent.click(getByText("Submit"))
   expect(apiMock.login).toHaveBeenCalledWith(username, password)
 })
 
