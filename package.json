@@ -61,6 +61,7 @@
     "workbox-webpack-plugin": "3.6.3"
   },
   "devDependencies": {
+    "jest-environment-jsdom-thirteen": "^1.0.1",
     "prettier": "^1.19.1",
     "typescript": "3.3.3"
   },
@@ -89,7 +90,7 @@
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
     ],
-    "testEnvironment": "jsdom",
+    "testEnvironment": "jsdom-thirteen",
     "testURL": "http://localhost",
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",

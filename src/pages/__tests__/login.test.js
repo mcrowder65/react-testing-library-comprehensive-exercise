@@ -27,7 +27,7 @@ it("renders", () => {
 })
 
 it("calls login with provided username and password when submitting", () => {
-  const { getByLabelText, getByText, debug } = render(
+  const { getByLabelText, getByText } = render(
     <ThemeProvider theme={theme}>
       <IntlProvider messages={translations["en"]} locale="en">
         <Router>
@@ -37,21 +37,20 @@ it("calls login with provided username and password when submitting", () => {
     </ThemeProvider>
   )
   const username = "reactlover65"
-  fireEvent.change(getByLabelText(translations.en["login.usernameAriaLabel"]), {
+  fireEvent.change(getByLabelText(/username */i), {
     target: { value: username }
   })
 
   const password = "SuspenseRocks!"
-  fireEvent.change(getByLabelText(translations.en["login.passwordAriaLabel"]), {
+  fireEvent.change(getByLabelText(/password */i), {
     target: { value: password }
   })
-  debug()
   fireEvent.click(getByText("Submit"))
   expect(apiMock.login).toHaveBeenCalledWith(username, password)
 })
 
-it("opens ResetPassword when clicking Forgot Password? link", () => {
-  const { getByLabelText, getByRole } = render(
+it("opens /reset-password when clicking Forgot Password? link", () => {
+  const { getByText } = render(
     <ThemeProvider theme={theme}>
       <IntlProvider messages={translations["en"]} locale="en">
         <Router>
@@ -60,4 +59,7 @@ it("opens ResetPassword when clicking Forgot Password? link", () => {
       </IntlProvider>
     </ThemeProvider>
   )
+
+  fireEvent.click(getByText(/forgot password?/i))
+  expect(window.location.pathname).toEqual("/reset-password")
 })

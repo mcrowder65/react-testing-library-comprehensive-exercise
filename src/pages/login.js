@@ -2,7 +2,7 @@ import React from "react"
 import { TextField, Button, Card, Typography } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import { Link } from "react-router-dom"
-import { FormattedMessage, useIntl } from "react-intl"
+import { FormattedMessage } from "react-intl"
 import * as api from "../api"
 
 const useStyles = makeStyles(theme => {
@@ -27,7 +27,6 @@ const Login = () => {
     } = e.target.elements
     await api.login(username, password)
   }
-  const { formatMessage } = useIntl()
   const classes = useStyles()
   return (
     <form onSubmit={onSubmit}>
@@ -36,9 +35,7 @@ const Login = () => {
           <FormattedMessage id="login.title" />
         </Typography>
         <TextField
-          inputProps={{
-            "aria-label": formatMessage({ id: "login.usernameAriaLabel" })
-          }}
+          id="username"
           required
           name="username"
           variant="outlined"
@@ -46,10 +43,8 @@ const Login = () => {
           label={<FormattedMessage id="login.username" />}
         />
         <TextField
+          id="password"
           required
-          inputProps={{
-            "aria-label": formatMessage({ id: "login.passwordAriaLabel" })
-          }}
           name="password"
           type="password"
           variant="outlined"

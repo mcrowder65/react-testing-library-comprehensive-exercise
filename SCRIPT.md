@@ -7,4 +7,5 @@ Let's look at the implementation of this login dialog.
 Here you can see that we are using material ui, react router, and react intl,
 all of which require react context providers.
 
-When renderering a component 
+Let's look at the test of login.js.
+
